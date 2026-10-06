@@ -1,0 +1,39 @@
+.auth-wrap {
+  min-height: calc(100dvh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #e5f0ff 0%, #fff4e8 100%);
+}
+
+:host-context(body.dark-theme) .auth-wrap {
+  background: linear-gradient(135deg, #1a2130 0%, #2b1f2c 100%);
+}
+
+.auth-card {
+  width: min(460px, 100%);
+  background-color: var(--app-card-bg);
+  border: 1px solid var(--app-card-border);
+}
+
+.auth-form {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.helper {
+  margin: 0;
+  color: var(--app-text-secondary);
+  font-size: 0.88rem;
+}
+
+.error {
+  margin: 0;
+  color: var(--app-error);
+  font-weight: 500;
+}
+
+button mat-spinner {
+  margin: 0 auto;
+}

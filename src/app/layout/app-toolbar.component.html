@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Abrir menu principal">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <a class="brand" routerLink="/light" aria-label="Ir a inicio">Socrates Front</a>
+
+  <span class="spacer"></span>
+
+  @if (isAuthenticated()) {
+    <button mat-button routerLink="/light" aria-label="Ir al control de luz">
+      Light
+    </button>
+  }
+
+  <button mat-icon-button (click)="runAuthAction()" [attr.aria-label]="authActionLabel()">
+    <mat-icon>{{ authActionIcon() }}</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="toggleTheme()" [attr.aria-label]="themeAriaLabel()">
+    <mat-icon>{{ currentThemeIcon() }}</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  @if (isAuthenticated()) {
+    <button mat-menu-item routerLink="/light">
+      <mat-icon>lightbulb</mat-icon>
+      <span>Light</span>
+    </button>
+  }
+
+  <button mat-menu-item (click)="runAuthAction()">
+    <mat-icon>{{ authActionIcon() }}</mat-icon>
+    <span>{{ authActionLabel() }}</span>
+  </button>
+
+  <button mat-menu-item (click)="toggleTheme()">
+    <mat-icon>{{ currentThemeIcon() }}</mat-icon>
+    <span>{{ currentThemeLabel() }}</span>
+  </button>
+</mat-menu>

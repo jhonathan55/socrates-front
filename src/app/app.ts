@@ -1,12 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppToolbarComponent } from './layout/app-toolbar.component';
+import { ThemeService } from './core/theme/theme.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, AppToolbarComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('socrates-front');
+  private readonly themeService = inject(ThemeService);
+
+  protected readonly title = 'socrates-front';
+
+  constructor() {
+    this.themeService.currentTheme();
+  }
 }

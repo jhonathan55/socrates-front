@@ -1,0 +1,44 @@
+<section class="light-wrap" aria-labelledby="light-title">
+  <mat-card class="light-card">
+    <mat-card-header>
+      <mat-card-title id="light-title">Control de Luz</mat-card-title>
+      <mat-card-subtitle>Dispositivo: {{ deviceId }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="status-row" aria-live="polite">
+        <span class="label">Estado actual</span>
+        <span class="state" [class.off]="state() === 'OFF'">{{ state() ?? 'Sin datos' }}</span>
+      </div>
+
+      @if (lastUpdate()) {
+        <p class="timestamp">Ultima actualizacion: {{ lastUpdate() | date: 'medium' }}</p>
+      }
+
+      @if (errorMessage()) {
+        <p class="error" role="alert">{{ errorMessage() }}</p>
+      }
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+      <button mat-stroked-button (click)="refresh()" [disabled]="loading()" aria-label="Actualizar estado de luz">
+        <mat-icon>refresh</mat-icon>
+        Actualizar
+      </button>
+      <button mat-flat-button color="primary" (click)="setLightState('ON')" [disabled]="loading() || state() === 'ON'">
+        <mat-icon>light_mode</mat-icon>
+        Encender
+      </button>
+      <button mat-flat-button color="warn" (click)="setLightState('OFF')" [disabled]="loading() || state() === 'OFF'">
+        <mat-icon>power_settings_new</mat-icon>
+        Apagar
+      </button>
+    </mat-card-actions>
+
+    @if (loading()) {
+      <div class="loading-overlay" aria-label="Cargando estado de luz">
+        <mat-spinner diameter="34"></mat-spinner>
+      </div>
+    }
+  </mat-card>
+</section>

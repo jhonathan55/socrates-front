@@ -1,0 +1,74 @@
+.light-wrap {
+  min-height: calc(100dvh - 64px);
+  padding: 32px 20px;
+  background: radial-gradient(circle at 20% 20%, #fff5d8, transparent 35%),
+    radial-gradient(circle at 80% 15%, #dff0ff, transparent 35%),
+    linear-gradient(180deg, #fdfdfd 0%, #f7fbff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+:host-context(body.dark-theme) .light-wrap {
+  background: radial-gradient(circle at 20% 20%, #2d2533, transparent 35%),
+    radial-gradient(circle at 80% 15%, #1b3140, transparent 35%),
+    linear-gradient(180deg, #11171e 0%, #151d26 100%);
+}
+
+.light-card {
+  width: min(620px, 100%);
+  position: relative;
+  background-color: var(--app-card-bg);
+  border: 1px solid var(--app-card-border);
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.label {
+  color: var(--app-text-secondary);
+}
+
+.state {
+  font-weight: 700;
+  color: var(--app-success);
+}
+
+.state.off {
+  color: var(--app-error);
+}
+
+.timestamp {
+  margin-top: 12px;
+  color: var(--app-text-secondary);
+}
+
+.error {
+  margin-top: 10px;
+  color: var(--app-error);
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(255 255 255 / 55%);
+  border-radius: 12px;
+}
+
+:host-context(body.dark-theme) .loading-overlay {
+  background: rgb(0 0 0 / 42%);
+}
